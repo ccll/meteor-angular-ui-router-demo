@@ -10,6 +10,8 @@ declare var console;
 declare var alert;
 declare var window;
 
+declare var UiRouter;
+
 var app = Angularite.module('demoApp', ['ui.router']);
 
 // 设置全局helper
@@ -67,22 +69,26 @@ app.config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
 
+        // console.dir(Template['state1']);
+        console.dir(Template['home'].render());
+        console.dir(Template['home']);
+
         $stateProvider
             .state('home', {
                 url: "/",
-                template: Template.home
+                template: UiRouter.template('home')
             })
             .state('state1', {
                 url: "/state1",
-                template: Template['state1']
+                template: UiRouter.template('state1')
             })
             .state('state1.list', {
                 url: "/list",
-                template: Template['state1.list1']
+                template: UiRouter.template('state1.list1')
             })
             .state('state2', {
                 url: "/state2",
-                template: Template.state2
+                template: UiRouter.template('state2')
             });
     }
 ]);
