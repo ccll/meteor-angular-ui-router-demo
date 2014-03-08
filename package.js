@@ -9,14 +9,13 @@ Package.on_use(function (api) {
     api.use('templating', 'client');
     api.use('handlebars', 'client');
     api.use('deps', 'client');
-    api.use('ngMeteor', 'client');
+    api.use('angularite', 'client');
     api.use('angular-ui-router', 'client');
 
     api.add_files('client/partials/home.html', 'client');
     api.add_files('client/partials/state1.html', 'client');
     api.add_files('client/partials/state2.html', 'client');
     api.add_files('client/partials/list1.html', 'client');
-    api.add_files('client/products.html', 'client');
     api.add_files('client/index.html', 'client');
     api.add_files('client/app.ts', 'client');
 });

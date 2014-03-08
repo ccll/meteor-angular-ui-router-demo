@@ -1,4 +1,4 @@
-declare var ngMeteor;
+declare var Angularite;
 declare var Meteor;
 declare var ngRouter;
 declare var Template;
@@ -10,8 +10,10 @@ declare var console;
 declare var alert;
 declare var window;
 
+var app = Angularite.module('demoApp', ['ui.router']);
+
 // 设置全局helper
-ngMeteor.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+app.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
@@ -23,7 +25,7 @@ ngMeteor.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $sta
     window.$rootScope = $rootScope;
 }]);
 
-ngMeteor.config([
+app.config([
     '$provide', function ($provide) {
         return $provide.decorator('$rootScope', [
             '$delegate', function ($delegate) {
@@ -43,10 +45,8 @@ ngMeteor.config([
     }
 ]);
 
-ngMeteor.controller('MainCtrl', ['$scope', '$collection', '$rootScope',
-    function ($scope, $collection, $rootScope) {
-
-        $collection('Foos', $scope);
+app.controller('MainCtrl', ['$scope', '$rootScope',
+    function ($scope, $rootScope) {
 
         Deps.autorun(function() {
             $scope.safeApply(function () {
@@ -63,7 +63,7 @@ ngMeteor.controller('MainCtrl', ['$scope', '$collection', '$rootScope',
     }
 ]);
 
-ngMeteor.config(['$stateProvider', '$urlRouterProvider',
+app.config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
 
